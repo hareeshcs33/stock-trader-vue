@@ -16,32 +16,60 @@
                     <li class="nav-item active d-flex align-items-center justify-content-center px-2">
                         <router-link to="/stocks">Stocks</router-link>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li><a class="dropdown-item" href="#" @click="endDay">end Day</a></li>
+                    <li 
+                        class="dropdown pr-3 pt-1"
+                        :class="{open: isDropdownOpen}"
+                        @click="isDropdownOpen = !isDropdownOpen"
+                        >
+                        <a
+                            class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            href="#"
+                            @click="saveLoad"
+                            >Save & Load</a>
+                            <ul class="dropdown-menu">
+                                <li class="text-center"><a href="#" class="d-block">Save Data</a></li>
+                                <li class="text-center"><a href="#" class="d-block">Load Data</a></li>
+                            </ul>
                     </li>
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form> -->
-                <strong class="navbar-text navbar-right">Funds: {{funds}}</strong>
+                <strong class="navbar-text navbar-right">Funds: {{ funds | currency}}</strong>
             </div>
         </nav>
     </div>
 </template>
 <script>
+import {mapActions} from 'vuex';
 export default {
+    data(){
+        return {
+            isDropdownOpen: false,
+        }
+    },
     computed: {
         funds(){
             return this.$store.getters.funds;
+        }
+    },
+    methods: {
+        ...mapActions([
+            'randomizeStocks'
+        ]),
+        endDay(){
+            this.randomizeStocks();
+        },
+        saveLoad(){
+
         }
     }
 }
