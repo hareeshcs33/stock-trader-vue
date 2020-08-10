@@ -3,7 +3,7 @@
     <div class="app-page">
       <header-component></header-component>
       <div class="row m-0">
-        <div class="col-xs-12 p-3">
+        <div class="col-xs-12 p-3 w-100">
           <router-view/>
         </div>
       </div>

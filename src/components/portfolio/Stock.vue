@@ -1,5 +1,50 @@
 <template>
-    <div>
-       <h3>The portfolio - Stock component</h3>
+    <div class="col-12 col-sm-6 col-lg-4">
+       <div class="card w-100 m-2" style="width: 18rem;">
+            <div class="card-header">
+                <h4 class="card-title">{{stock.name}} <small>(price: {{stock.price}}) | Quantity:{{ stock.quantity }}</small></h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <input
+                        type="number"
+                        class="form-control mr-3"
+                        placeholder="Quantity"
+                        v-model="quantity"
+                        />
+                    <button
+                        class="btn btn-success"
+                        @click="sellStock"
+                        :disabled="quantity <= 0 "
+                        >Sell</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+<script>
+import {mapActions} from 'vuex';
+
+export default {
+    props: ['stock'],
+    data(){
+        return {
+            quantity: 0,
+        }
+    },
+    methods: {
+        ...mapActions({
+            placeSellOrder: 'sellStock'
+        }),
+        sellStock(){
+            const order = {
+                stockId: this.stock.id,
+                stockPrice: this.stock.price,
+                quantity: this.quantity
+            };
+            this.placeSellOrder(order);
+            this.quantity = 0;
+        }
+    }
+}
+</script>
