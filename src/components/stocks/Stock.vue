@@ -11,23 +11,41 @@
                         class="form-control mr-3" 
                         placeholder="Quantity" 
                         v-model="quantity"
+                        :class="{'input-error': insufficientFunds}"
                         />
                     <button 
-                        class="btn btn-success"
+                        class="btn btn-success w-100"
                         @click="buyStock"
-                        :disabled="quantity <= 0 "
-                        >Buy</button>
+                        :disabled="insufficientFunds || quantity <= 0 "
+                        >{{insufficientFunds ? 'Insufficient Fund' : 'Buy'}}</button>
                 </div>
             </div>
         </div>
     </div>
 </template>
+<style>
+.input-error {
+    border: 1px solid red;
+}
+.input-error:focus {
+    border-color: red;
+    box-shadow: 0 0 0 1px rgb(219, 117, 117);
+}
+</style>
 <script>
 export default {
     props: ['stock'],
     data(){
         return {
             quantity: 0,
+        }
+    },
+    computed: {
+        funds(){
+            return this.$store.getters.funds;
+        },
+        insufficientFunds(){
+            return this.quantity * this.stock.price > this.funds;
         }
     },
     methods: {

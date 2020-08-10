@@ -11,25 +11,31 @@
                         class="form-control mr-3"
                         placeholder="Quantity"
                         v-model="quantity"
+                        :class="{'input-error':insufficientQuantity}"
                         />
                     <button
-                        class="btn btn-success"
+                        class="btn btn-success w-100"
                         @click="sellStock"
-                        :disabled="quantity <= 0 "
-                        >Sell</button>
+                        :disabled="insufficientQuantity || quantity <= 0 "
+                        >{{insufficientQuantity ? 'Not Enough Stocks' : 'Sell'}}</button>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 import {mapActions} from 'vuex';
-
 export default {
     props: ['stock'],
     data(){
         return {
             quantity: 0,
+        }
+    },
+    computed: {
+        insufficientQuantity(){
+            return this.quantity > this.stock.quantity;
         }
     },
     methods: {
