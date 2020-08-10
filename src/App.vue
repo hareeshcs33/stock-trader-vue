@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <div class="app-page">
-      <quote-layout></quote-layout>
-      <router-view/>
+      <header-component></header-component>
+      <div class="row m-0">
+        <div class="col-xs-12 p-3">
+          <router-view/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import QuoteLayout from '@/components/quote-layout.vue'
+import HeaderComponent from '@/components/header-component.vue'
+
 export default {
   name: 'App',
   data() {
@@ -17,8 +22,11 @@ export default {
     }
   },
   components: {
-    QuoteLayout,
-  }
+    HeaderComponent,
+  },
+  created(){
+    this.$store.dispatch('initStocks');
+  },
 }
 </script>
 

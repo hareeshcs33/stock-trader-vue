@@ -1,5 +1,5 @@
 <template>
     <div class="container">
-       Stock Trader quote layout
+       home-component
     </div>
 </template>
