@@ -1,4 +1,4 @@
-import stocks from '../../data/stocks';
+import stocksData from '../../data/stocks';
 
 const state = {
     stocks: []
@@ -6,7 +6,7 @@ const state = {
 
 const mutations = {
     'SET_STOCKS' (state, stocks) {
-        state.stocks = stocks;
+        state.stocks = [...stocks];
     },
     'RND_STOCKS' (state) {
 
@@ -18,7 +18,7 @@ const actions = {
         commit();
     },
     initStocks: ({commit}) => {
-        commit('SET_STOCKS', stocks)
+        commit('SET_STOCKS', stocksData)
     },
     randomizeStocks: ({commit}) => {
         commit('RND_STOCKS');
@@ -27,7 +27,7 @@ const actions = {
 
 const getters = {
     stocks: state => {
-        state.stocks;
+        return state.stocks;
     }
 }
 

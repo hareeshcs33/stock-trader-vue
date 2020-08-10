@@ -1,5 +1,5 @@
 <template>
-    <div class="row">aaa
+    <div class="row">
        <stock 
             v-for="(stock, index) in stocks" 
             :key="index"
@@ -15,7 +15,7 @@ export default {
     },
     computed: {
         stocks(){
-            console.log('computed stocks', this.$store.getters.stocks)
+            // console.log('computed stocks', this.$store.getters.stocks);
             return this.$store.getters.stocks;
         }
     }

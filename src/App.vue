@@ -15,18 +15,12 @@
 import HeaderComponent from '@/components/header-component.vue'
 
 export default {
-  name: 'App',
-  data() {
-    return {
-      
-    }
-  },
   components: {
     HeaderComponent,
   },
   created(){
     this.$store.dispatch('initStocks');
-  },
+  }
 }
 </script>
 
