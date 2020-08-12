@@ -12,6 +12,8 @@ Vue.use(BootstrapVue);
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+Vue.http.options.root = 'https://vuejs-stock-trader-ade74.firebaseio.com/';
+
 import store from './store/store';
 
 import VueRouter from 'vue-router';

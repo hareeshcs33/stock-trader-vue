@@ -21,7 +21,7 @@
                     <li><a class="dropdown-item" href="#" @click="endDay">end Day</a></li>
                     <li 
                         class="dropdown pr-3 pt-1"
-                        :class="{open: isDropdownOpen}"
+                        :class="{show: isDropdownOpen}"
                         @click="isDropdownOpen = !isDropdownOpen"
                         >
                         <a
@@ -31,11 +31,11 @@
                             aria-haspopup="true"
                             aria-expanded="false"
                             href="#"
-                            @click="saveLoad"
+                            :class="{show: isDropdownOpen}"
                             >Save & Load</a>
                             <ul class="dropdown-menu">
-                                <li class="text-center"><a href="#" class="d-block">Save Data</a></li>
-                                <li class="text-center"><a href="#" class="d-block">Load Data</a></li>
+                                <li class="text-center"><a href="#" class="d-block" @click="saveData">Save Data</a></li>
+                                <li class="text-center"><a href="#" class="d-block" @click="loadData">Load Data</a></li>
                             </ul>
                     </li>
                 </ul>
@@ -62,14 +62,23 @@ export default {
         }
     },
     methods: {
-        ...mapActions([
-            'randomizeStocks'
-        ]),
+        ...mapActions({
+            randomizeStocks: 'randomizeStocks',
+            fetchData: 'loadData'
+        }),
         endDay(){
             this.randomizeStocks();
         },
-        saveLoad(){
-
+        saveData(){
+            const data = {
+                funds: this.$store.getters.funds,
+                stockPortfolio: this.$store.getters.stockPortfolio,
+                stocks: this.$store.getters.stocks
+            };
+            this.$http.put('data.json', data);
+        },
+        loadData(){
+            this.fetchData();
         }
     }
 }
