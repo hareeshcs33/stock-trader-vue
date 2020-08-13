@@ -18,7 +18,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right">
-                    <li><a class="dropdown-item" href="#" @click="endDay">end Day</a></li>
+                    <li><a class="dropdown-item font-weight-bold" href="#" @click="endDay">end Day</a></li>
                     <li 
                         class="dropdown pr-3 pt-1"
                         :class="{show: isDropdownOpen}"
@@ -39,10 +39,6 @@
                             </ul>
                     </li>
                 </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
                 <strong class="navbar-text navbar-right">Funds: {{ funds | currency}}</strong>
             </div>
         </nav>
