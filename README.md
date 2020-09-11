@@ -5,5 +5,6 @@ stock tader app using vue and vuex.
 //start
 npm run dev
 
+
 //build
 npm run build
