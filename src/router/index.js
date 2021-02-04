@@ -8,6 +8,7 @@ import Portfolio from '../components/portfolio/Portfolio.vue'
 import Stocks from '../components/stocks/Stocks.vue'
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: '/',
